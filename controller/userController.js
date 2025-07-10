@@ -211,7 +211,7 @@ async function uploadFilePost(req, res) {
   if (req.user) {
     const supabaseUrl = "https://gjnphxhoeuutaypojtey.supabase.co";
     const supabaseKey = process.env.SUPABASE_ANON_KEY;
-    const userSupabase = createClient(supabaseUrl, supabaseKey, {
+    const usersSupabase = createClient(supabaseUrl, supabaseKey, {
       global: {
         headers: {
           Authorization: `Bearer ${req.user.token}`,
@@ -229,7 +229,7 @@ async function uploadFilePost(req, res) {
     const filePath = `users/${id}/${folder}/${fileName}`;
 
     try {
-      const { data, error } = await userSupabase.storage
+      const { data, error } = await usersSupabase.storage
         .from("filestorage")
         .upload(filePath, file, {
           contentType: mimeType,
@@ -242,7 +242,7 @@ async function uploadFilePost(req, res) {
 
       console.log("Upload successful: ", data);
 
-      const { data: urlData } = await userSupabase.storage
+      const { data: urlData } = await usersSupabase.storage
         .from("filestorage")
         .getPublicUrl(filePath);
 
