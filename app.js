@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const prisma = require("./prisma.ts");
 
 const express = require("express");
@@ -13,8 +15,6 @@ const LocalStrategy = require("passport-local").Strategy;
 const { PrismaSessionStore } = require("@quixo3/prisma-session-store");
 
 const bcrypt = require("bcryptjs");
-
-require("dotenv").config();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
