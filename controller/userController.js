@@ -5,9 +5,6 @@ const { validationResult } = require("express-validator");
 const prisma = require("../prisma.ts");
 
 const { createClient } = require("@supabase/supabase-js");
-const supabaseUrl = "https://gjnphxhoeuutaypojtey.supabase.co";
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
 
 async function homePageGet(req, res) {
   if (req.user) {
@@ -212,6 +209,16 @@ async function signUpPost(req, res) {
 
 async function uploadFilePost(req, res) {
   if (req.user) {
+    const supabaseUrl = "https://gjnphxhoeuutaypojtey.supabase.co";
+    const supabaseKey = process.env.SUPABASE_ANON_KEY;
+    const userSupabase = createClient(supabaseUrl, supabaseKey, {
+      global: {
+        headers: {
+          Authorization: `Bearer ${req.user.token}`,
+        },
+      },
+    });
+
     const file = req.file.buffer;
     const id = req.user.id;
     const folder = parseInt(req.params.id);
@@ -222,7 +229,7 @@ async function uploadFilePost(req, res) {
     const filePath = `users/${id}/${folder}/${fileName}`;
 
     try {
-      const { data, error } = await supabase.storage
+      const { data, error } = await userSupabase.storage
         .from("filestorage")
         .upload(filePath, file, {
           contentType: mimeType,
@@ -235,7 +242,7 @@ async function uploadFilePost(req, res) {
 
       console.log("Upload successful: ", data);
 
-      const { data: urlData } = await supabase.storage
+      const { data: urlData } = await userSupabase.storage
         .from("filestorage")
         .getPublicUrl(filePath);
 
