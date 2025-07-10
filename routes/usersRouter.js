@@ -28,7 +28,7 @@ const validationRulesSignUp = [
     .trim()
     .notEmpty()
     .withMessage("Email is a required field.")
-    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/)
+    .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     .withMessage("Please enter a valid email address."),
 
   body("firstname")
