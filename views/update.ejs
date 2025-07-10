@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage Wars</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <div><%=text%></div>
+    <%if (locals.renameFolder) {%>
+    <br />
+    <form action="/<%=folder.id%>/rename-folder/" method="POST">
+      <label for="newname">New Name: </label>
+      <input type="text" name="newname" id="newname" required />
+      <button type="submit">Submit</button>
+    </form>
+    <%}%> <%if (locals.createFolder) {%>
+    <br />
+    <form action="/create-folder/" method="POST">
+      <label for="name">Folder Name: </label>
+      <input type="text" name="name" id="name" required />
+      <button type="submit">Submit</button>
+    </form>
+    <%}%>
+  </body>
+</html>

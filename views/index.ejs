@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage Wars</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <%if (!locals.user) { %>
+    <div><%=text%></div>
+    <br />
+    <div>
+      You are not currently logged in. Please login to view your folders.
+    </div>
+    <br />
+    <a href="/login">If you are an existing user, click here to log in.</a
+    ><br /><br />
+
+    <a href="/sign-up"
+      >If you are a new user, click here to sign up and start using Storage
+      Wars.</a
+    ><br /><br />
+    <%} else { %>
+    <div>Welcome back, <%=user.firstname%>!</div>
+    <br />
+    <%if (locals.folders.length > 0) {%>
+    <div>Click on a folder below to view your files.</div>
+    <br />
+    <%folders.forEach((folder) => { %>
+    <a href="/<%=folder.id%>/view-folder/"><%=folder.name%></a>
+    <div style="display: flex">
+      <form action="/<%=folder.id%>/rename-folder/" method="GET">
+        <button type="submit">Rename</button>
+      </form>
+      <form action="/<%=folder.id%>/delete-folder/" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+    <br />
+    <%})} else { %>
+
+    <div>You currently do not have any folders.</div>
+    <%}%> <br /><a href="/create-folder">Click here to create a new folder.</a
+    ><br /><br />
+
+    <a href="/log-out">Click here to log out.</a><br /><br />
+
+    <%}%>
+  </body>
+</html>

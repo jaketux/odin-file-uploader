@@ -1,0 +1,41 @@
+{
+  "name": "odin-file-uploader",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsx app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaketux/odin-file-uploader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaketux/odin-file-uploader/issues"
+  },
+  "homepage": "https://github.com/jaketux/odin-file-uploader#readme",
+  "description": "",
+  "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "@quixo3/prisma-session-store": "^3.1.13",
+    "@supabase/supabase-js": "^2.50.4",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1",
+    "multer": "^2.0.1",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "prisma": "^6.11.1",
+    "tsx": "^4.20.3"
+  }
+}

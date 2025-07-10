@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage Wars</title>
+  </head>
+  <body>
+    <div><%=title%></div>
+    <br />
+    <div><%=text%></div>
+    <br />
+    <form action="/sign-up" method="POST">
+      <label for="email">Email: </label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        value="<%=locals.formData ? formData.email : ''%>"
+        required
+      /><br /><br />
+      <label for="username">Username: </label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        required
+        value="<%=locals.formData ? formData.username : ''%>"
+      /><br /><br />
+      <label for="firstname">First Name: </label>
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        value="<%=locals.formData ? formData.firstname : ''%>"
+        required
+      />
+      <br /><br />
+      <label for="lastname">Last Name: </label>
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+        value="<%=locals.formData ? formData.lastname : ''%>"
+        required
+      /><br /><br />
+      <label for="password">Password: </label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        required
+      /><br /><br />
+      <label for="confirmpassword">Confirm Password: </label>
+      <input
+        type="password"
+        name="confirmpassword"
+        id="confirmpassword"
+        required
+      /><br /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <br />
+    <%if (locals.errors && errors.length>0) {%> <%errors.forEach((error)=>{%>
+    <div><%=error.msg%></div>
+    <%})%> <%}%>
+  </body>
+</html>

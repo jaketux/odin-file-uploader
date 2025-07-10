@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage Wars</title>
+  </head>
+  <body>
+    <h1><%=title%></h1>
+    <div>You are currently viewing the files in: <%=folder.name%></div>
+    <br />
+    <%folder.files.forEach((file) => { %>
+    <div>Name: <%=file.filename%></div>
+    <div>Size: <%=file.fileSize%> bytes</div>
+    <div>Created: <%=new Date(file.createdAt).toLocaleString('en-AU')%></div>
+    <div>Modified: <%=new Date(file.updatedAt).toLocaleString('en-AU')%></div>
+    <a href="<%=file.fileLink+"?download"%>">Download</a>
+
+    <br /><br />
+    <%})%>
+    <div>Upload a new file below</div>
+
+    <form
+      action="/<%=folder.id%>/upload-file"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="file" name="file" /><br />
+      <button type="submit">Upload</button>
+    </form>
+    <br />
+    <%if (locals.errors && errors.length>0) {%> <%errors.forEach((error)=>{%>
+      <div><%=error.message%>. Please check the file you are uploading and try again.</div>
+      <%})%> <%}%><br/>
+    <a href="/">Click here to return home</a>
+  </body>
+</html>
