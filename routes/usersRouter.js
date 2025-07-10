@@ -61,7 +61,7 @@ const validationRulesSignUp = [
     .matches(/(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/)
     .withMessage("Password must contain at least one special character."),
 
-  body("confirmPassword").custom((value, { req }) => {
+  body("confirmpassword").custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error(
         "Passwords do not match. Please enter matching passwords to continue."
