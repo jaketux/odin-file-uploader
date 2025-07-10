@@ -210,14 +210,8 @@ async function signUpPost(req, res) {
 async function uploadFilePost(req, res) {
   if (req.user) {
     const supabaseUrl = "https://gjnphxhoeuutaypojtey.supabase.co";
-    const supabaseKey = process.env.SUPABASE_ANON_KEY;
-    const usersSupabase = createClient(supabaseUrl, supabaseKey, {
-      global: {
-        headers: {
-          Authorization: `Bearer ${req.user.token}`,
-        },
-      },
-    });
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const usersSupabase = createClient(supabaseUrl, supabaseServiceKey);
 
     const file = req.file.buffer;
     const id = req.user.id;
