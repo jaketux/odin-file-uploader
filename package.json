@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsx app.js"
+    "build": "tsx app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
