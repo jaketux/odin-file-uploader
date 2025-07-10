@@ -3,8 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsx app.js",
-    "start": "node app.js"
+    "dev": "node app.js",
+    "build": "prisma generate",
+    "start": "node app.js",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "repository": {
     "type": "git",
